@@ -10,15 +10,16 @@ const app = express();
 // Rate limiting
 const limiter = rateLimit({
     windowMs: 10 * 60 * 1000, // 10 minutes
-    max: 20
+    max: 40
 })
 app.use(limiter);
 app.set('trust proxy', 1)
 
 // Enable cors
-app.use(cors({
-    origin: 'https://ignasplace-weather.netlify.app'
-}));
+// app.use(cors({
+//     origin: 'https://ignasplace-weather.netlify.app'
+// }));
+app.use(cors());
 
 // Set static folder
 // app.use(express.static('public'))
