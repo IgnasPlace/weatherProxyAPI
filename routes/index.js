@@ -37,8 +37,7 @@ router.get('/getLocation', cache('2 minutes'), async (req, res) => {
       throw Error(data.statusCode + ". " + data.error + ". " + data.message)
     }
   } catch (err) {
-    res.send(err)
-    console.log(err);
+    res.json(err)
   }
 });
 
@@ -65,8 +64,7 @@ router.get('/getWeather', cache('2 minutes'), async (req, res) => {
       throw Error(data.statusCode + ". " + data.error + ". " + data.message)
     }
   } catch (err) {
-    res.send(err)
-    console.log(err);
+    res.json(err)
   }
 })
 
