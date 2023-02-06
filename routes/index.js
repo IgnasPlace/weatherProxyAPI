@@ -41,6 +41,7 @@ router.get('/getLocation', cache('2 minutes'), async (req, res) => {
   if(Object.keys(req.query).length === 0) {
     res.send('wrong params')
   }
+
   try {
     const response = await fetch(
       `${GEO_BASE_URL}?text=${req.query.keyWord}&limit=7&lang=en&format=json&${GEO_KEY_NAME}=${GEO_KEY_VALUE}`
@@ -62,9 +63,14 @@ router.get('/getWeather', cache('2 minutes'), async (req, res) => {
   if(Object.keys(req.query).length < 3) {
     res.send('wrong params')
   }
+
+  const params = new URLSearchParams({
+    [WEATHER_KEY_NAME]: WEATHER_KEY_VALUE,
+    ...url.parse(req.url, true).query
+})
   try {
     const response = await fetch(
-      `${WEATHER_BASE_URL}?lat=${req.query.lat}&lon=${req.query.lon}&units=${req.query.units}&${WEATHER_KEY_NAME}=${WEATHER_KEY_VALUE}`
+      `${WEATHER_BASE_URL}?${params}`
     );
     const data = await response.json();
     if (!data.error) {
