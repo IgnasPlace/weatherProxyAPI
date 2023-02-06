@@ -55,8 +55,12 @@ router.get("/getWeather", cache("2 minutes"), async (req, res) => {
     ...url.parse(req.url, true).query,
   });
   try {
-    const response = await fetch(`${WEATHER_BASE_URL}?${params}`);
-    const data = await response.json();
+    const apiRes = await needle(
+      "get",
+      `${WEATHER_BASE_URL}?${params}`
+    );
+    const data = apiRes.body;
+
     if (!data.error) {
       res.json(data);
     } else {
