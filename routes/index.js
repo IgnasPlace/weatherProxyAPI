@@ -15,28 +15,6 @@ const GEO_KEY_VALUE = process.env.GEO_KEY_VALUE;
 // Init cache
 let cache = apicache.middleware
 
-router.get("/", cache('2 minutes'), async (req, res) => {
-  try {
-
-    const params = new URLSearchParams({
-        [API_KEY_NAME]: API_KEY_VALUE,
-        ...url.parse(req.url, true).query
-    })
-
-    const apiRes = await needle("get", `${API_BASE_URL}?${params}`);
-    const data = apiRes.body;
-
-    // LOG THE REQUEST TO THE PUBLIC API
-    // if(process.env.NODE_ENV !== 'production') {
-    //     console.log(`REQUEST: ${API_BASE_URL}?${params}`)
-    // }
-
-    res.status(200).json(data);
-  } catch (error) {
-    res.status(500).json({error})
-  }
-});
-
 router.get('/getLocation', cache('2 minutes'), async (req, res) => {
   if(Object.keys(req.query).length === 0) {
     res.send('wrong params')
