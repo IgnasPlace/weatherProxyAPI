@@ -29,6 +29,7 @@ router.get('/getLocation', cache('2 minutes'), async (req, res) => {
       `${GEO_BASE_URL}?text=${req.query.keyWord}&limit=7&lang=en&format=json&${GEO_KEY_NAME}=${GEO_KEY_VALUE}`
     );
     const data = await response.json();
+      res.send(data)
     if (!data.error) {
       res.json(data);
     } else {
