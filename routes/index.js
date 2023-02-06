@@ -18,6 +18,7 @@ let cache = apicache.middleware
 router.get('/getLocation', cache('2 minutes'), async (req, res) => {
   if(Object.keys(req.query).length === 0) {
     res.send('wrong params')
+    return
   }
 
   try {
@@ -39,7 +40,8 @@ router.get('/getLocation', cache('2 minutes'), async (req, res) => {
 router.get('/getWeather', cache('2 minutes'), async (req, res) => {
   // console.log("FETCHING WEATHER DATA");
   if(Object.keys(req.query).length < 3) {
-    res.send('wrong params')
+    res.send('wrong params');
+    return
   }
 
   const params = new URLSearchParams({
