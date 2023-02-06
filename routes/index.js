@@ -15,6 +15,10 @@ const GEO_KEY_VALUE = process.env.GEO_KEY_VALUE;
 // Init cache
 let cache = apicache.middleware
 
+router.get('/', async (req,res) => {
+    res.send('welcome to IgnasPlace Weather proxy API');
+  })
+
 router.get('/getLocation', cache('2 minutes'), async (req, res) => {
   if(Object.keys(req.query).length === 0) {
     res.send('wrong params')
@@ -26,6 +30,7 @@ router.get('/getLocation', cache('2 minutes'), async (req, res) => {
       `${GEO_BASE_URL}?text=${req.query.keyWord}&limit=7&lang=en&format=json&${GEO_KEY_NAME}=${GEO_KEY_VALUE}`
     );
     const data = await response.json();
+      res.send(data)
     if (!data.error) {
       res.json(data);
     } else {
