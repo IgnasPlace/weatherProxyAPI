@@ -16,10 +16,10 @@ app.use(limiter);
 app.set('trust proxy', 1)
 
 // Enable cors
-// app.use(cors({
-//     origin: 'https://ignasplace-weather.netlify.app'
-// }));
-app.use(cors());
+app.use(cors({
+    origin: ['https://ignasplace-weather.netlify.app', 'http://139.47.18.80']
+}));
+// app.use(cors());
 
 // Set static folder
 // app.use(express.static('public'))
