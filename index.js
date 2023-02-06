@@ -17,7 +17,7 @@ app.set('trust proxy', 1)
 
 // Enable cors
 app.use(cors({
-    origin: ['https://ignasplace-weather.netlify.app', 'http://139.47.18.80']
+    origin: ['https://ignasplace-weather.netlify.app', 'http://localhost:5173']
 }));
 // app.use(cors());
 
