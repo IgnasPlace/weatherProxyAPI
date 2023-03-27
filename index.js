@@ -18,7 +18,7 @@ app.set("trust proxy", 1);
 // Enable cors
 app.use(
   cors({
-    origin: ["https://weather.ignasplace.com/", "http://localhost:5173"],
+    origin: ["https://weather.ignasplace.com/", "weather.ignasplace.com/", "http://localhost:5173"],
   })
 );
 // app.use(cors());
