@@ -22,6 +22,8 @@ app.use(
       "https://weather.ignasplace.com",
       "weather.ignasplace.com",
       "http://localhost:5173",
+      "http://localho.st:5173/",
+      "http://localhost:5173/undefined"
     ],
   })
 );
